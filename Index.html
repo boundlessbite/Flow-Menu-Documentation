@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flow Menu - Documentation</title>
+    <!-- Tailwind CSS for modern utility styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for sleek iconography -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        pre, code {
+            font-family: 'JetBrains Mono', monospace !important;
+        }
+
+        /* Webkit scrollbars styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2dd4bf;
+        }
+
+        /* Glassmorphism elements */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Image styling zoom hooks */
+        .img-container {
+            position: relative;
+            cursor: zoom-in;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .img-container:hover {
+            transform: translateY(-2px);
+            border-color: #2dd4bf;
+            box-shadow: 0 10px 30px -10px rgba(45, 212, 191, 0.3);
+        }
+
+        /* Custom Keyboard Key Styling */
+        kbd {
+            background: #334155;
+            border-bottom: 3px solid #1e293b;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 0.85em;
+            color: #f1f5f9;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            font-weight: 600;
+        }
+
+        /* Active sidebar link tracking styling */
+        .active-nav {
+            color: #2dd4bf !important;
+            border-left-color: #2dd4bf !important;
+            background: rgba(45, 212, 191, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-[#0b0f19] text-slate-200 min-h-screen selection:bg-teal-500 selection:text-slate-900">
+
+    <header class="sticky top-0 z-40 w-full border-b border-slate-800 bg-[#0b0f19]/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-teal-500 to-emerald-400 flex items-center justify-center shadow-lg shadow-teal-500/20">
+                    <i class="fa-solid fa-bars-staggered text-slate-950 text-xl font-bold"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg text-white leading-none tracking-tight">Flow Menu</h1>
+                    <span class="text-xs text-teal-400 font-medium">Documentation & User Guide</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="bg-teal-500/10 text-teal-400 border border-teal-500/20 px-3 py-1 rounded-full text-xs font-semibold">
+                    Version 1.1
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="flex flex-col lg:flex-row gap-8 items-start">
+            
+            <aside class="w-full lg:w-72 flex-shrink-0 lg:sticky lg:top-28 max-h-[calc(100vh-140px)] overflow-y-auto pr-2">
+                <div class="glass-card rounded-xl p-5 border border-slate-800/80">
+                    <h3 class="text-xs uppercase tracking-wider text-slate-400 font-bold mb-4">Documentation Outline</h3>
+                    <nav class="space-y-1">
+                        <a href="#overview" class="nav-link flex items-center gap-2 px-3 py-2 text-sm text-slate-400 hover:text-white rounded-lg border-l-2 border-transparent transition-all">
+                            <i class="fa-solid fa-circle-info w-4 text-center text-xs"></i> Overview
+                        </a>
+                        <a href="#features" class="nav-link flex items-center gap-2 px-3 py-2 text-sm text-slate-400 hover:text-white rounded-lg border-l-2 border-transparent transition-all">
+                            <i class="fa-solid fa-star w-4 text-center text-xs"></i> Key Features
+                        </a>
+                        <a href="#installation" class="nav-link flex items-center gap-2 px-3 py-2 text-sm text-slate-400 hover:text-white rounded-lg border-l-2 border-transparent transition-all">
+                            <i class="fa-solid fa-download w-4 text-center text-xs"></i> Installation
+                        </a>
+                        <a href="#usage" class="nav-link flex items-center gap-2 px-3 py-2 text-sm text-slate-400 hover:text-white rounded-lg border-l-2 border-transparent transition-all">
+                            <i class="fa-solid fa-play w-4 text-center text-xs"></i> Basic Usage
+                        </a>
+                        <a href="#configuration" class="nav-link flex items-center gap-2 px-3 py-2 text-sm text-slate-400 hover:text-white rounded-lg border-l-2 border-transparent transition-all">
+                            <i class="fa-solid fa-gears w-4 text-center text-xs"></i> Configuration Settings
+                        </a>
+                        <a href="#supported-entries" class="nav-link flex items-center gap-2 px-3 py-2 text-sm text-slate-400 hover:text-white rounded-lg border-l-2 border-transparent transition-all">
+                            <i class="fa-solid fa-cubes w-4 text-center text-xs"></i> Supported Menu Entries
+                        </a>
+                        <a href="#placement" class="nav-link flex items-center gap-2 px-3 py-2 text-sm text-slate-400 hover:text-white rounded-lg border-l-2 border-transparent transition-all">
+                            <i class="fa-solid fa-arrows-to-dot w-4 text-center text-xs"></i> Placement Behavior
+                        </a>
+                        <a href="#keyboard" class="nav-link flex items-center gap-2 px-3 py-2 text-sm text-slate-400 hover:text-white rounded-lg border-l-2 border-transparent transition-all">
+                            <i class="fa-solid fa-keyboard w-4 text-center text-xs"></i> Keyboard Workflow
+                        </a>
+                        <a href="#troubleshooting" class="nav-link flex items-center gap-2 px-3 py-2 text-sm text-slate-400 hover:text-white rounded-lg border-l-2 border-transparent transition-all">
+                            <i class="fa-solid fa-triangle-exclamation w-4 text-center text-xs"></i> Troubleshooting & Support
+                        </a>
+                    </nav>
+                    
+                    <div class="mt-6 pt-6 border-t border-slate-800/80">
+                        <div class="p-3 bg-teal-950/20 border border-teal-500/10 rounded-lg">
+                            <span class="block text-xs font-semibold text-teal-400 mb-1"><i class="fa-solid fa-file-code"></i> Referencing File</span>
+                            <span class="text-xs text-slate-400 font-mono">Documentation.md</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="flex-1 w-full space-y-16 lg:max-w-4xl">
+
+                <section id="overview" class="scroll-mt-28">
+                    <div class="border-b border-slate-800 pb-5 mb-6">
+                        <h2 class="text-3xl font-extrabold text-white tracking-tight">Overview</h2>
+                    </div>
+                    <p class="text-lg text-slate-300 leading-relaxed mb-6">
+                        <strong class="text-teal-400">Flow Menu</strong> adds an elegant, lightning-fast quick-add popup directly to the Unreal Engine Level Viewport. It allows world artists, level designers, and developers to easily spawn commonly used items instantly without interrupting their viewport workflow or searching through the Content Browser.
+                    </p>
+                    
+                    <!-- Quick Specs Table -->
+                    <div class="overflow-x-auto rounded-xl border border-slate-800 glass-card">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-900/60 border-b border-slate-800">
+                                    <th class="py-4 px-5 text-sm font-semibold text-teal-400">Specification</th>
+                                    <th class="py-4 px-5 text-sm font-semibold text-teal-400">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-sm">
+                                <tr>
+                                    <td class="py-4 px-5 font-semibold text-slate-300">Plugin Name</td>
+                                    <td class="py-4 px-5 text-slate-400 font-mono">Flow Menu</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-5 font-semibold text-slate-300">Category</td>
+                                    <td class="py-4 px-5 text-slate-400">Editor Utility / Quality of Life</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-5 font-semibold text-slate-300">Supported Asset Types</td>
+                                    <td class="py-4 px-5 text-slate-400">Actor classes, Actor Blueprint assets, static mesh assets, and lights</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-5 font-semibold text-slate-300">Primary Workflow</td>
+                                    <td class="py-4 px-5 text-slate-400">
+                                        Open popup with a shortcut, choose an item, then place it directly at the cursor in the viewport.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mt-8 bg-teal-950/20 border-l-4 border-teal-500 rounded-r-lg p-4 text-slate-300">
+                        <p class="text-sm">
+                            <strong class="text-teal-400"><i class="fa-solid fa-circle-exclamation mr-1"></i> Editor-Only Guardrail:</strong> 
+                            Flow Menu is compiled strictly for editor modules. It will not package into your runtime games and will never impact your game's final shipping UI or size.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="features" class="scroll-mt-28">
+                    <div class="border-b border-slate-800 pb-5 mb-6">
+                        <h2 class="text-3xl font-extrabold text-white tracking-tight">Key Features</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/40 hover:border-slate-700 transition-all flex gap-3">
+                            <i class="fa-solid fa-bolt text-teal-400 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Quick-Add Popup</h4>
+                                <p class="text-sm text-slate-400">Opens directly inside the Level Viewport contextually at your mouse pointer location.</p>
+                            </div>
+                        </div>
+                        <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/40 hover:border-slate-700 transition-all flex gap-3">
+                            <i class="fa-solid fa-keyboard text-teal-400 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Custom Shortcuts</h4>
+                                <p class="text-sm text-slate-400">Assign your preferred hotkeys smoothly through Unreal's standard Project Settings page.</p>
+                            </div>
+                        </div>
+                        <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/40 hover:border-slate-700 transition-all flex gap-3">
+                            <i class="fa-solid fa-cubes text-teal-400 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Multi-Class Spawning</h4>
+                                <p class="text-sm text-slate-400">Seamless support for placing native classes, Blueprint Actors, custom lights, or static meshes.</p>
+                            </div>
+                        </div>
+                        <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/40 hover:border-slate-700 transition-all flex gap-3">
+                            <i class="fa-solid fa-arrows-to-dot text-teal-400 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Keyboard Navigation</h4>
+                                <p class="text-sm text-slate-400">Move quickly using arrow keys and press Enter to place, keeping your hands on input tools.</p>
+                            </div>
+                        </div>
+                        <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/40 hover:border-slate-700 transition-all flex gap-3">
+                            <i class="fa-solid fa-location-crosshairs text-teal-400 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Deferred Placement Mode</h4>
+                                <p class="text-sm text-slate-400">Enabling click-to-place lets you select the item, inspect its proxy, and tap to drop in real-time.</p>
+                            </div>
+                        </div>
+                        <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/40 hover:border-slate-700 transition-all flex gap-3">
+                            <i class="fa-solid fa-sliders text-teal-400 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Pre-configured Defaults</h4>
+                                <p class="text-sm text-slate-400">Ships with rich default options that can be edited, overwritten, or supplemented on a per-project basis.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="installation" class="scroll-mt-28">
+                    <div class="border-b border-slate-800 pb-5 mb-6">
+                        <h2 class="text-3xl font-extrabold text-white tracking-tight">Installation</h2>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed mb-6">
+                        Install Flow Menu as a global project plugin or distribute it as a localized plugin folder embedded with your production directory structure.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-slate-800 text-teal-400 flex items-center justify-center font-bold flex-shrink-0 border border-slate-700">1</div>
+                            <div>
+                                <h4 class="font-semibold text-white">Copy Folder</h4>
+                                <p class="text-sm text-slate-400">Copy the <code class="text-pink-400 text-xs px-1 bg-slate-800 border border-slate-700 rounded">Flow Menu</code> source folder directly into your current Unreal project's <code class="text-pink-400 text-xs px-1 bg-slate-800 border border-slate-700 rounded">Plugins</code> directory.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-slate-800 text-teal-400 flex items-center justify-center font-bold flex-shrink-0 border border-slate-700">2</div>
+                            <div>
+                                <h4 class="font-semibold text-white">Open Project</h4>
+                                <p class="text-sm text-slate-400">Launch the Unreal Engine 5 project in your targeted version.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-slate-800 text-teal-400 flex items-center justify-center font-bold flex-shrink-0 border border-slate-700">3</div>
+                            <div>
+                                <h4 class="font-semibold text-white">Enable the Plugin</h4>
+                                <p class="text-sm text-slate-400">Navigate to <code class="text-pink-400 text-xs px-1 bg-slate-800 border border-slate-700 rounded">Edit &gt; Plugins</code>. Search for "Flow Menu", and check the active box to enable it.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-slate-800 text-teal-400 flex items-center justify-center font-bold flex-shrink-0 border border-slate-700">4</div>
+                            <div>
+                                <h4 class="font-semibold text-white">Restart the Editor</h4>
+                                <p class="text-sm text-slate-400">If prompted, click the restart button on the bottom right corner of the editor window to reload modules.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="usage" class="scroll-mt-28">
+                    <div class="border-b border-slate-800 pb-5 mb-6">
+                        <h2 class="text-3xl font-extrabold text-white tracking-tight">Basic Usage</h2>
+                    </div>
+                    <p class="text-slate-300 mb-6">Once installed, using Flow Menu takes less than a second during active level design runs:</p>
+                    
+                    <ul class="space-y-3 text-sm text-slate-300 pl-4 list-disc marker:text-teal-400">
+                        <li><strong>Open Level Viewport:</strong> Focus on any 3D level viewport within the editor.</li>
+                        <li><strong>Call Shortcut:</strong> Click the pre-configured hotkey shortcut to open the Flow Menu immediately.</li>
+                        <li><strong>Select Entry:</strong> Navigate choices with the mouse pointer or step list selections using the key arrow bindings and hit <kbd>Enter</kbd>.</li>
+                        <li><strong>Placement Spawning:</strong> The selected actor will spawn right under the viewport mouse trajectory, or anchor with real-world clicks depending on the configuration.</li>
+                    </ul>
+
+                    <div class="img-container mt-6">
+                        <img src="flow_menu_popup.png" alt="Flow Menu Level Viewport Popup" onerror="this.outerHTML='<div class=\'img-fallback bg-[#121620] border-2 border-dashed border-slate-800 rounded-lg p-12 text-center text-slate-400 font-mono\'><i class=\'fa-solid fa-image text-3xl text-teal-400 mb-2 block\'></i>📸 <strong>flow_menu_popup.png</strong><br><small class=\'text-slate-500 text-xs\'>Place your level viewport screenshot here to display in-game popup examples.</small></div>'">
+                    </div>
+                </section>
+
+                <section id="configuration" class="scroll-mt-28">
+                    <div class="border-b border-slate-800 pb-5 mb-6">
+                        <h2 class="text-3xl font-extrabold text-white tracking-tight">Where To Configure It</h2>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed mb-6">
+                        You can adjust shortcuts, default spawners, alignment filters, and custom entry maps inside Project Settings:
+                    </p>
+                    
+                    <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl mb-6 flex items-center justify-between text-sm">
+                        <span class="text-slate-400 font-semibold"><i class="fa-solid fa-folder-open text-teal-400 mr-2"></i> Settings Configuration Path</span>
+                        <code class="text-teal-300 font-bold bg-[#0b0f19] px-3 py-1.5 rounded border border-slate-800">Edit &gt; Project Settings &gt; Plugins &gt; Flow Menu</code>
+                    </div>
+
+                    <!-- Configuration Parameters Table -->
+                    <div class="overflow-x-auto rounded-xl border border-slate-800 glass-card">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-900/60 border-b border-slate-800">
+                                    <th class="py-4 px-5 text-sm font-semibold text-teal-400 w-1/3">Setting</th>
+                                    <th class="py-4 px-5 text-sm font-semibold text-teal-400 w-2/3">Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-sm text-slate-300">
+                                <tr>
+                                    <td class="py-4 px-5 font-semibold text-white">Open Menu Shortcut</td>
+                                    <td class="py-4 px-5 text-slate-400">Defines the specific key combination mapping used to open the popup interface in the Level Viewport.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-5 font-semibold text-white">Placement Mode</td>
+                                    <td class="py-4 px-5 text-slate-400">Controls whether the item spawns instantly at the raycast hit, or delays spawning until you physically click on the scene.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-5 font-semibold text-white">Align To Surface Normal</td>
+                                    <td class="py-4 px-5 text-slate-400">Orients the spawned actor to correspond directly to the slope angle of the hit surface underneath.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-5 font-semibold text-white">Default Entries</td>
+                                    <td class="py-4 px-5 text-slate-400">Contains the sample out-of-the-box templates shipped with the plugin (lights, primitives). These items can be expanded, changed, or completely cleared.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-5 font-semibold text-white">Custom Entries</td>
+                                    <td class="py-4 px-5 text-slate-400">Project-defined lists for custom Actor classes, specific Blueprint files, or heavy mesh components you wish to catalog.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="img-container mt-6">
+                        <img src="flow_menu_settings.png" alt="Flow Menu Project Settings Panel" onerror="this.outerHTML='<div class=\'img-fallback bg-[#121620] border-2 border-dashed border-slate-800 rounded-lg p-12 text-center text-slate-400 font-mono\'><i class=\'fa-solid fa-image text-3xl text-teal-400 mb-2 block\'></i>📸 <strong>flow_menu_settings.png</strong><br><small class=\'text-slate-500 text-xs\'>Place your project settings capture here.</small></div>'">
+                    </div>
+                </section>
+
+                <section id="supported-entries" class="scroll-mt-28">
+                    <div class="border-b border-slate-800 pb-5 mb-6">
+                        <h2 class="text-3xl font-extrabold text-white tracking-tight">Supported Menu Entries</h2>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed mb-6">
+                        Flow Menu dynamically handles several core categories of assets directly in one unified user menu:
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="p-5 rounded-xl border border-slate-800 glass-card">
+                            <div class="w-10 h-10 rounded-lg bg-teal-500/10 text-teal-400 flex items-center justify-center mb-4 border border-teal-500/20">
+                                <i class="fa-solid fa-shapes"></i>
+                            </div>
+                            <h4 class="font-bold text-white mb-2">Actor Class</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">Highly practical for placing default engine primitive shapes, utilities, spawners, triggers, volumetric boxes, and core structural gameplay nodes.</p>
+                        </div>
+                        
+                        <div class="p-5 rounded-xl border border-slate-800 glass-card">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4 border border-emerald-500/20">
+                                <i class="fa-solid fa-network-wired"></i>
+                            </div>
+                            <h4 class="font-bold text-white mb-2">Actor Blueprint</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">Perfect for complex, customized project files like interactive doors, gates, player cameras, lighting rigs, audio cues, or environment assets containing gameplay logic.</p>
+                        </div>
+
+                        <div class="p-5 rounded-xl border border-slate-800 glass-card">
+                            <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center mb-4 border border-blue-500/20">
+                                <i class="fa-solid fa-cube"></i>
+                            </div>
+                            <h4 class="font-bold text-white mb-2">Static Mesh</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">Optimized for lighting-fast decoration and greyboxing. Pop common modular wall blocks, pillars, kitbash pieces, or obstacles into active play spaces instantly.</p>
+                        </div>
+                    </div>
+
+                    <div class="img-container mt-6">
+                        <img src="flow_menu_entries.png" alt="Supported Entries Hierarchy" onerror="this.outerHTML='<div class=\'img-fallback bg-[#121620] border-2 border-dashed border-slate-800 rounded-lg p-12 text-center text-slate-400 font-mono\'><i class=\'fa-solid fa-image text-3xl text-teal-400 mb-2 block\'></i>📸 <strong>flow_menu_entries.png</strong><br><small class=\'text-slate-500 text-xs\'>Place menu entry examples screenshot here.</small></div>'">
+                    </div>
+                </section>
+
+                <section id="placement" class="scroll-mt-28">
+                    <div class="border-b border-slate-800 pb-5 mb-6">
+                        <h2 class="text-3xl font-extrabold text-white tracking-tight">Placement Behavior</h2>
+                    </div>
+                    <div class="space-y-4 text-slate-300 leading-relaxed">
+                        <p>
+                            To maintain stability and predictable asset orientation, Flow Menu operates under precise rules calculated sequentially based on the Level Viewport's camera state:
+                        </p>
+                        <ul class="space-y-3 pl-4 list-disc marker:text-teal-400 text-sm">
+                            <li><strong>Level Viewport Focus:</strong> The popup opens exclusively if triggered while the level editor viewport is currently selected and active.</li>
+                            <li><strong>Collision Raycast Tracing:</strong> The editor casts a line trace under your cursor. If the ray hits geometric actors (landscapes, meshes, BSP), the item spawns directly at that specific hit coordinate.</li>
+                            <li><strong>Fallback Vector Placement:</strong> If the mouse pointer is hovered over empty skies or void spaces where no collision geometric is hit, the spawn coordinates fall back to a configured distance vector in front of the active editing camera.</li>
+                            <li><strong>Orientation Preservation:</strong> Static mesh models and custom Actor Blueprints preserve their precise authored default rotation variables unless "Align To Surface Normal" overrides it.</li>
+                            <li><strong>Align to Surface Normal:</strong> When active, this feature dynamically calculates the hit surface's angle vector and matches the upward z-rotation of the spawned actor to blend flush against complex terrain curves or sloped architectural meshes.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="keyboard" class="scroll-mt-28">
+                    <div class="border-b border-slate-800 pb-5 mb-6">
+                        <h2 class="text-3xl font-extrabold text-white tracking-tight">Keyboard Workflow</h2>
+                    </div>
+                    <p class="text-slate-300 mb-6">
+                        For designers who prefer keyboard input to maintain maximum speed, Flow Menu includes deep shortcut tracking options:
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/30 flex flex-col justify-between items-start">
+                            <span class="text-xs uppercase font-bold text-slate-500 mb-2">Navigation</span>
+                            <div class="flex gap-2 mb-3">
+                                <kbd><i class="fa-solid fa-arrow-up"></i> Up</kbd>
+                                <kbd><i class="fa-solid fa-arrow-down"></i> Down</kbd>
+                            </div>
+                            <p class="text-xs text-slate-400">Steps upward or downward through the active list. Highlight cycles sequentially.</p>
+                        </div>
+
+                        <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/30 flex flex-col justify-between items-start">
+                            <span class="text-xs uppercase font-bold text-slate-500 mb-2">Accept Selection</span>
+                            <div class="mb-3">
+                                <kbd>Enter</kbd>
+                            </div>
+                            <p class="text-xs text-slate-400">Confirms the highlighted option and instantiates the spawning sequence inside the viewport.</p>
+                        </div>
+
+                        <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/30 flex flex-col justify-between items-start">
+                            <span class="text-xs uppercase font-bold text-slate-500 mb-2">Dismiss Popup</span>
+                            <div class="mb-3">
+                                <kbd>Esc</kbd>
+                            </div>
+                            <p class="text-xs text-slate-400">Instantly closes the quick menu without choosing an item or altering any world geometry.</p>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-400 text-sm mt-4">
+                        <i class="fa-solid fa-lightbulb text-teal-400 mr-1"></i> <strong>Pro-Tip:</strong> The pop-up container supports automatic content scrolling. If your active list size extends beyond the height limits of the viewport screen, keyboard scrolling triggers smoothly so no options are blocked.
+                    </p>
+                </section>
+
+                <section id="troubleshooting" class="scroll-mt-28">
+                    <div class="border-b border-slate-800 pb-5 mb-6">
+                        <h2 class="text-3xl font-extrabold text-white tracking-tight">Troubleshooting &amp; Support</h2>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="p-5 border border-slate-800 bg-slate-900/50 rounded-xl">
+                            <h4 class="font-bold text-white mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-question text-teal-400"></i> The popup doesn't open.
+                            </h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                Ensure the <strong>Level Viewport</strong> is explicitly active before triggering the hotkeys. Click anywhere in the viewport viewport area to draw focus first, then tap the key sequence.
+                            </p>
+                        </div>
+
+                        <div class="p-5 border border-slate-800 bg-slate-900/50 rounded-xl">
+                            <h4 class="font-bold text-white mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-question text-teal-400"></i> An item from the menu fails to spawn.
+                            </h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                Verify that the selected entry correctly references a valid Actor class, a real, uncorrupted Actor Blueprint asset, or a properly-referenced static mesh. If references break inside the Content Browser, Flow Menu will safely skip creation to avoid crashing the editor.
+                            </p>
+                        </div>
+
+                        <div class="p-5 border border-slate-800 bg-slate-900/50 rounded-xl">
+                            <h4 class="font-bold text-white mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-question text-teal-400"></i> The hotkeys conflict with another editor shortcut.
+                            </h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                Navigate immediately to Project Settings and bind an unused key combination to the <strong>Open Menu Shortcut</strong> entry mapping.
+                            </p>
+                        </div>
+
+                        <div class="p-5 border border-slate-800 bg-slate-900/50 rounded-xl">
+                            <h4 class="font-bold text-white mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-question text-teal-400"></i> Code changes to the plugin are not updating.
+                            </h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                If you are making modifications or manual updates to the plugin files on disk, always restart the Unreal Editor to clean up modules and reload the compiled binaries seamlessly.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Github Support Footer -->
+                    <div class="mt-8 p-6 bg-slate-900 border border-slate-800 rounded-xl flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center gap-4 text-center md:text-left">
+                            <div class="w-12 h-12 rounded-lg bg-teal-500/10 text-teal-400 flex items-center justify-center text-2xl">
+                                <i class="fa-brands fa-github"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Need Additional Assistance?</h4>
+                                <p class="text-sm text-slate-400">Visit our official Github issue tracker to report bugs, request features, or check active discussions.</p>
+                            </div>
+                        </div>
+                        <a href="https://github.com/pratikgdh/FlowMenu/issues" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-teal-500/10">
+                            Open Support Ticket <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <footer class="mt-20 border-t border-slate-800 bg-[#070b13] py-8 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; 2026 Flow Menu. Produced for Unreal Engine 5 editor workflows. Distributed globally.</p>
+        </div>
+    </footer>
+
+    <!-- Modal Container for Zooming & Panning Images -->
+    <div id="image-modal" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <span class="close-modal absolute top-5 right-10 text-slate-400 hover:text-teal-400 text-5xl font-light cursor-pointer select-none">&times;</span>
+        <img class="modal-content max-w-[90%] max-h-[85vh] rounded-lg shadow-2xl object-contain cursor-zoom-in transition-transform duration-300 ease-out" id="zoomed-image" alt="Zoomed View">
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Interactive Scrollspy (highlights menu on scroll)
+            const navLinks = document.querySelectorAll(".nav-link");
+            const sections = document.querySelectorAll("main > section");
+
+            function updateScrollspy() {
+                let currentSectionId = "";
+                const scrollPos = window.scrollY + 120; // offset
+
+                sections.forEach(section => {
+                    if (scrollPos >= section.offsetTop) {
+                        currentSectionId = section.getAttribute("id");
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    const href = link.getAttribute("href").substring(1);
+                    if (href === currentSectionId) {
+                        link.classList.add("active-nav");
+                    } else {
+                        link.classList.remove("active-nav");
+                    }
+                });
+            }
+
+            window.addEventListener("scroll", updateScrollspy);
+            updateScrollspy(); // Run once immediately on page load
+
+            // Lightbox Modal Mechanism with Drag-To-Pan
+            const modal = document.getElementById("image-modal");
+            const modalImg = document.getElementById("zoomed-image");
+            const closeBtn = document.querySelector(".close-modal");
+            const images = document.querySelectorAll("main img");
+            
+            let isZoomed = false;
+            let isDragging = false;
+            let startX, startY;
+            let translateX = 0, translateY = 0;
+            let dragDistance = 0;
+
+            // Trigger Lightbox
+            images.forEach(img => {
+                const container = img.closest('.img-container') || img;
+                container.addEventListener("click", function(e) {
+                    modal.classList.remove("pointer-events-none");
+                    modal.classList.add("opacity-100");
+                    modalImg.src = img.src;
+                    resetZoom();
+                });
+            });
+
+            // Start Dragging/Panning
+            modalImg.addEventListener("mousedown", function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (isZoomed) {
+                    isDragging = true;
+                    dragDistance = 0;
+                    startX = e.clientX - translateX * 2.5;
+                    startY = e.clientY - translateY * 2.5;
+                    this.style.transition = "none";
+                }
+            });
+
+            // Handle Move Vectors
+            window.addEventListener("mousemove", function(e) {
+                if (isDragging && isZoomed) {
+                    dragDistance += Math.abs(e.movementX) + Math.abs(e.movementY);
+                    translateX = (e.clientX - startX) / 2.5;
+                    translateY = (e.clientY - startY) / 2.5;
+                    modalImg.style.transform = `scale(2.5) translate(${translateX}px, ${translateY}px)`;
+                }
+            });
+
+            // Halt dragging operations safely
+            window.addEventListener("mouseup", function(e) {
+                if (isDragging) {
+                    isDragging = false;
+                    modalImg.style.transition = "transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)";
+                }
+            });
+
+            // Toggle Zoom in/out or dismiss click
+            modalImg.addEventListener("click", function(e) {
+                e.stopPropagation(); 
+                if (dragDistance > 5) {
+                    dragDistance = 0; 
+                    return; 
+                }
+                
+                isZoomed = !isZoomed;
+                if (isZoomed) {
+                    this.classList.add("zoomed");
+                    this.classList.replace("cursor-zoom-in", "cursor-grab");
+                    translateX = 0;
+                    translateY = 0;
+                    this.style.transform = `scale(2.5) translate(0px, 0px)`;
+                } else {
+                    resetZoom();
+                }
+            });
+
+            function resetZoom() {
+                isZoomed = false;
+                isDragging = false;
+                modalImg.classList.remove("zoomed");
+                modalImg.classList.replace("cursor-grab", "cursor-zoom-in");
+                translateX = 0;
+                translateY = 0;
+                modalImg.style.transform = `scale(1) translate(0px, 0px)`;
+            }
+
+            function closeModal() {
+                modal.classList.add("pointer-events-none");
+                modal.classList.remove("opacity-100");
+                resetZoom();
+                setTimeout(() => { modalImg.src = ""; }, 300);
+            }
+
+            // Close listeners
+            closeBtn.addEventListener("click", closeModal);
+            modal.addEventListener("click", function(e) {
+                if (e.target === modal) closeModal();
+            });
+            document.addEventListener("keydown", function(e) {
+                if (e.key === "Escape") closeModal();
+            });
+        });
+    </script>
+</body>
+</html>
